@@ -8,7 +8,7 @@ import {ActivatedRoute} from '@angular/router';
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent implements OnInit {
-  public loggedIn = true;
+  public loggedIn = false;
 
   constructor(
     private toastr: ToastrService,
