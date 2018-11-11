@@ -1,0 +1,10 @@
+<nav *ngIf="!loggedIn" class="navbar navbar-dark bg-dark">
+  <span class="col-md text-light">Test</span>
+  <app-login (loggedIn)="login($event)"></app-login>
+  <button class="btn btn-outline-primary" (click)="signIn()">Registrieren <i class="fa fa-sign-in"></i></button>
+</nav>
+
+<nav *ngIf="loggedIn" class="navbar navbar-dark bg-dark">
+  <span class="col-md text-light">Hallo</span>
+  <button class="btn btn-outline-primary" (click)="logout()">Abmelden <i class="fa fa-sign-out"></i></button>
+</nav>
