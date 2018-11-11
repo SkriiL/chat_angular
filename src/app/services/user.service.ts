@@ -19,4 +19,15 @@ export class UserService {
     return of(Users.find(user => username === user.username));
   }
   constructor() { }
+
+  add(username: string, email: string, password: string) {
+    const id = Users.length + 1;
+    const user: User = {
+      id: id,
+      username: username,
+      email: email,
+      password: password
+    };
+    Users.push(user);
+  }
 }

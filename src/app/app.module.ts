@@ -10,6 +10,7 @@ import {ToastrModule} from 'ngx-toastr';
 import { AppRoutingModule } from './/app-routing.module';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NotLoggedInComponent } from './pages/not-logged-in/not-logged-in.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NotLoggedInComponent } from './pages/not-logged-in/not-logged-in.compon
     LoginComponent,
     DashboardComponent,
     NotLoggedInComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

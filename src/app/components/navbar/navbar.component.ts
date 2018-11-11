@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
 import {Location} from '@angular/common';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private toastr: ToastrService,
-    private location: Location
+    private location: Location,
+    private routes: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -29,6 +31,7 @@ export class NavbarComponent implements OnInit {
   }
 
   signIn() {
-    this.location.
+    this.location.go('register');
+    window.location.reload()
   }
 }
