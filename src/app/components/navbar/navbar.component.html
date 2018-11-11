@@ -5,6 +5,7 @@
 </nav>
 
 <nav *ngIf="loggedIn" class="navbar navbar-dark bg-dark">
-  <span class="col-md text-light">Hallo</span>
+  <button class="col-md btn btn-dark">Chat</button>
+  <button class="col-md btn btn-dark" routerLink="/user-view">Nutzer</button>
   <button class="btn btn-outline-primary" (click)="logout()">Abmelden <i class="fa fa-sign-out"></i></button>
 </nav>

@@ -1,0 +1,25 @@
+<h4 class="ml-2">Nutzeransicht</h4>
+<div class="row">
+  <div class="col-8">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nutzername</th>
+        <th scope="col">Email</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users" (click)="selectUser(user)">
+        <th>{{ user.id }}</th>
+        <th>{{ user.username }}</th>
+        <th>{{ user.email }}</th>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-4">
+    <app-user-edit *ngIf="selectedUser" [user]="selectedUser" (collapsed)="collapse()"></app-user-edit>
+    <span class="btn btn-outline-primary" *ngIf="!selectedUser">Nutzer zum Bearbeiten auswählen</span>
+  </div>
+</div>

@@ -8,12 +8,11 @@ import {ActivatedRoute} from '@angular/router';
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent implements OnInit {
-  public loggedIn = false;
+  public loggedIn = true;
 
   constructor(
     private toastr: ToastrService,
     private location: Location,
-    private routes: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -28,10 +27,12 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.toastr.info('Abgemeldet!');
     this.loggedIn = false;
+    this.location.go('');
+    window.location.reload();
   }
 
   signIn() {
     this.location.go('register');
-    window.location.reload()
+    window.location.reload();
   }
 }

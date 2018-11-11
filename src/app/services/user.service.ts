@@ -30,4 +30,26 @@ export class UserService {
     };
     Users.push(user);
   }
+
+  edit(user: User): boolean {
+    let oldUser = this.getSingleById(user.id).subscribe(u => oldUser = u);
+    const index = Users.indexOf(oldUser);
+    if (index === -1) {
+      return false;
+    } else {
+      Users.splice(index, 1, user);
+      return true;
+    }
+  }
+
+  deleteById(id: number) {
+    let user = this.getSingleById(id).subscribe(u => user = u);
+    const index = Users.indexOf(user);
+    if (index === -1) {
+      return false;
+    } else {
+      Users.splice(index, 1);
+      return true;
+    }
+  }
 }
