@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit {
   }
 
   signIn() {
-    this.location.go('register');
+    this.location.go('-1/register');
     window.location.reload();
   }
 }

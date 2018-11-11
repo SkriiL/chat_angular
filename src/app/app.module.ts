@@ -13,6 +13,9 @@ import { NotLoggedInComponent } from './pages/not-logged-in/not-logged-in.compon
 import { RegisterComponent } from './pages/register/register.component';
 import { UserViewComponent } from './pages/user-view/user-view.component';
 import { UserEditComponent } from './pages/user-view/user-edit.component';
+import { ChatComponent } from './pages/chat/chat.component';
+import { MessageComponent } from './components/message/message.component';
+import { AllChatsComponent } from './components/all-chats/all-chats.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import { UserEditComponent } from './pages/user-view/user-edit.component';
     RegisterComponent,
     UserViewComponent,
     UserEditComponent,
+    ChatComponent,
+    MessageComponent,
+    AllChatsComponent,
   ],
   imports: [
     BrowserModule,
