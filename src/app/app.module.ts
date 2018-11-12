@@ -9,7 +9,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { NotLoggedInComponent } from './pages/not-logged-in/not-logged-in.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { UserViewComponent } from './pages/user-view/user-view.component';
 import { UserEditComponent } from './pages/user-view/user-edit.component';
@@ -23,7 +22,6 @@ import { AllChatsComponent } from './components/all-chats/all-chats.component';
     NavbarComponent,
     LoginComponent,
     DashboardComponent,
-    NotLoggedInComponent,
     RegisterComponent,
     UserViewComponent,
     UserEditComponent,

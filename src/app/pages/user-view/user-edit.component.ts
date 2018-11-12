@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {User} from '../../models/user.model';
 import {UserService} from '../../services/user.service';
 import {ToastrService} from 'ngx-toastr';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-user-edit',
@@ -15,11 +16,16 @@ export class UserEditComponent implements OnInit {
   public email: string;
   public changes = false;
 
+  private currentUser: User;
+
   constructor(
     private userService: UserService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
+    this.getUser();
     this.username = this.user.username;
     this.email = this.user.email;
   }
@@ -48,5 +54,13 @@ export class UserEditComponent implements OnInit {
 
   abort() {
     this.collapsed.emit(true);
+  }
+
+  getUser() {
+    let id = -1;
+    this.route.params.subscribe(params => id = +params['id']);
+    if (id !== -1) {
+      this.userService.getSingleById(id).subscribe(u => this.currentUser = u);
+    }
   }
 }
