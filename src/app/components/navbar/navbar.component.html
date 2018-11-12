@@ -1,11 +1,11 @@
-<nav *ngIf="!loggedIn" class="navbar navbar-dark bg-dark">
+<nav *ngIf="!currentUser" class="navbar navbar-dark bg-dark">
   <span class="col-md text-light">Test</span>
   <app-login (loggedIn)="login($event)"></app-login>
   <button class="btn btn-outline-primary" (click)="signIn()">Registrieren <i class="fa fa-sign-in"></i></button>
 </nav>
 
-<nav *ngIf="loggedIn" class="navbar navbar-dark bg-dark">
-  <button class="col-md btn btn-dark" routerLink="1/user-view">Chat</button>
+<nav *ngIf="currentUser" class="navbar navbar-dark bg-dark">
+  <button class="col-md btn btn-dark" routerLink="1/chat">Chat</button>
   <button class="col-md btn btn-dark" routerLink="1/user-view">Nutzer</button>
   <button class="btn btn-outline-primary" (click)="logout()">Abmelden <i class="fa fa-sign-out"></i></button>
 </nav>

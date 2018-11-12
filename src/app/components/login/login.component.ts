@@ -25,14 +25,14 @@ export class LoginComponent implements OnInit {
   public username: string;
   public password: string;
   private user: User;
-  @Output() loggedIn = new EventEmitter<boolean>();
+  @Output() loggedIn = new EventEmitter<User>();
 
   login() {
     this.userService.getSingleByUsername(this.username).subscribe(u => this.user = u);
     if (this.user) {
       if (this.password === this.user.password) {
         this.toastr.success('Login erfolgreich!');
-        this.loggedIn.emit(true);
+        this.loggedIn.emit(this.user);
       } else {
         this.toastr.error('Falsches Passwort.', 'Login fehlgeschlagen!');
       }

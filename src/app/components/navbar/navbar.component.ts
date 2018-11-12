@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
 import {Location} from '@angular/common';
 import {ActivatedRoute} from '@angular/router';
+import {User} from '../../models/user.model';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent implements OnInit {
-  public loggedIn = false;
+  public currentUser: User;
 
   constructor(
     private toastr: ToastrService,
@@ -18,15 +19,15 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(isLoggedIn: boolean) {
-    if (isLoggedIn) {
-      this.loggedIn = true;
+  login(user: User) {
+    if (user) {
+      this.currentUser = user;
     }
   }
 
   logout() {
     this.toastr.info('Abgemeldet!');
-    this.loggedIn = false;
+    this.currentUser = undefined;
     this.location.go('');
     window.location.reload();
   }
