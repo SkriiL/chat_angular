@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../models/user.model';
 import {UserService} from '../../services/user.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-chat',
@@ -11,10 +11,14 @@ export class ChatComponent implements OnInit {
   private currentUser: User;
 
   constructor(private userService: UserService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.getUser();
+    if (!this.currentUser) {
+      this.router.navigate(['']);
+    }
   }
 
   getUser() {
