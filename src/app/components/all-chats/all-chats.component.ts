@@ -1,17 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Conversations} from '../../users';
+import {Conversation} from '../../models/conversation.model';
 
 @Component({
   selector: 'app-all-chats',
   templateUrl: './all-chats.component.html',
 })
 export class AllChatsComponent implements OnInit {
-  chats = [
-    {user: 'Test', messages: [{user: 0, message: 'Hi'}, {user: 1, message: 'Hey'}]},
-    {user: 'Dummy', messages: [{user: 0, message: 'Na'}, {user: 1, message: 'Was geht'}]}
-  ];
+  @Output() select = new EventEmitter<Conversation>();
+  public conversations = Conversations;
+  public selectedConversation: Conversation;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  onSelect(conversation: Conversation) {
+    this.select.emit(conversation);
+  }
 }

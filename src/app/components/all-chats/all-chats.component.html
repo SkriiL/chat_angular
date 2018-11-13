@@ -1,8 +1,10 @@
-<div class="container">
-  <div class="row" *ngFor="let chat of chats">
-    <div class="card" style="width: 100%">
-      <strong class="card-title">{{ chat.user }}</strong>
-      <span class="card-text">{{ chat.messages[1].message }}</span>
+<div class="container ml-2">
+  <div class="row mt-2" *ngFor="let conv of conversations">
+    <div class="card" style="width: 100%" (click)="onSelect(conv)">
+      <strong class="card-title">{{ conv.member[1].username }}</strong>
+      <span class="card-text">{{ conv.messages[0].text }}</span>
+      <span class="card-text -align-right font-italic">{{ conv.messages[0].date }}</span>
     </div>
   </div>
 </div>
+

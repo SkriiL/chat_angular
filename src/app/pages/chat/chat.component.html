@@ -1,8 +1,9 @@
 <div class="row">
   <div class="col-3">
-    <app-all-chats></app-all-chats>
+    <app-all-chats (select)="select($event)"></app-all-chats>
   </div>
-  <div class="col-9">
-    hallo
+  <div class="col-9 mt-2">
+    <app-specific-chat *ngIf="selectedConversation" [conversation]="selectedConversation"></app-specific-chat>
+    <span class="btn btn-outline-primary" *ngIf="!selectedConversation">Chat auswählen</span>
   </div>
 </div>

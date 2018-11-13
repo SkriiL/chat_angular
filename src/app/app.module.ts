@@ -15,6 +15,7 @@ import { UserEditComponent } from './pages/user-view/user-edit.component';
 import { ChatComponent } from './pages/chat/chat.component';
 import { MessageComponent } from './components/message/message.component';
 import { AllChatsComponent } from './components/all-chats/all-chats.component';
+import { SpecificChatComponent } from './components/specific-chat/specific-chat.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AllChatsComponent } from './components/all-chats/all-chats.component';
     ChatComponent,
     MessageComponent,
     AllChatsComponent,
+    SpecificChatComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from '../../models/user.model';
 import {UserService} from '../../services/user.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Conversation} from '../../models/conversation.model';
 
 @Component({
   selector: 'app-chat',
@@ -9,6 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class ChatComponent implements OnInit {
   private currentUser: User;
+  public selectedConversation: Conversation;
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
@@ -27,5 +29,9 @@ export class ChatComponent implements OnInit {
     if (id !== -1) {
       this.userService.getSingleById(id).subscribe(u => this.currentUser = u);
     }
+  }
+
+  select(conversation: Conversation) {
+    this.selectedConversation = conversation;
   }
 }
