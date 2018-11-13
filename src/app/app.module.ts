@@ -16,6 +16,8 @@ import { ChatComponent } from './pages/chat/chat.component';
 import { MessageComponent } from './components/message/message.component';
 import { AllChatsComponent } from './components/all-chats/all-chats.component';
 import { SpecificChatComponent } from './components/specific-chat/specific-chat.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ReallyModalComponent } from './modals/really-modal/really-modal.component';
 
 @NgModule({
   declarations: [
@@ -30,13 +32,15 @@ import { SpecificChatComponent } from './components/specific-chat/specific-chat.
     MessageComponent,
     AllChatsComponent,
     SpecificChatComponent,
+    ReallyModalComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

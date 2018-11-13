@@ -1,0 +1,16 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ title }}</h4>
+  </div>
+  <div class="modal-body">
+    <form>
+      <span>{{ text }}</span>
+    </form>
+  </div>
+  <div class="modal-footer justify-content-between">
+    <button type="button" class="btn btn-outline-danger" (click)="close(modal)">Abbrechen</button>
+    <button type="button" class="btn btn-outline-primary" (click)="save(modal)">{{ buttonText }}</button>
+  </div>
+</ng-template>
+
+<button (click)="open(content)" [disabled]="disabled" [class]="buttonClass">{{ buttonText }}</button>

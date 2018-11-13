@@ -14,6 +14,8 @@
   <div class="btn-group" role="group">
     <button class="btn btn-outline-danger mr-2" (click)="abort()">Abbrechen</button>
     <button class="btn btn-outline-dark mr-2" (click)="reset()" [disabled]="!changes">Zurücksetzen</button>
-    <button class="btn btn-outline-primary" (click)="edit()" [disabled]="!changes">Speichern</button>
+    <app-really-modal buttonText="Speichern" [disabled]="!changes" buttonClass="btn btn-outline-primary"
+                      (clicked)="edit($event)" [text]="'Den Nutzer ' + user.username + ' wirklich bearbeiten?'" title="Nutzer bearbeiten">
+    </app-really-modal>
   </div>
 </form>

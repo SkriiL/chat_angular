@@ -25,26 +25,27 @@ export class UserEditComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.getUser();
     this.username = this.user.username;
     this.email = this.user.email;
   }
 
-  edit() {
-    const user: User = {
-      id: this.user.id,
-      username: this.username ? this.username : this.user.username,
-      email: this.email ? this.email : this.user.email,
-      password: this.user.password,
-    };
-    const success = this.userService.edit(user);
-    if (success) {
-      this.toastr.success('Der Nutzer ' + user.username + ' wurde erfolgreich bearbeitet!');
-    } else {
-      this.toastr.success('Der Nutzer konnte nicht gefunden werden!');
+  edit(event: boolean) {
+    if (event) {
+      const user: User = {
+        id: this.user.id,
+        username: this.username ? this.username : this.user.username,
+        email: this.email ? this.email : this.user.email,
+        password: this.user.password,
+      };
+      const success = this.userService.edit(user);
+      if (success) {
+        this.toastr.success('Der Nutzer ' + user.username + ' wurde erfolgreich bearbeitet!');
+      } else {
+        this.toastr.error('Der Nutzer konnte nicht gefunden werden!');
+      }
+      // window.location.reload();
+      this.collapsed.emit(true);
     }
-    window.location.reload();
-    this.collapsed.emit(true);
   }
 
   reset() {
@@ -54,13 +55,5 @@ export class UserEditComponent implements OnInit {
 
   abort() {
     this.collapsed.emit(true);
-  }
-
-  getUser() {
-    let id = -1;
-    this.route.params.subscribe(params => id = +params['id']);
-    if (id !== -1) {
-      this.userService.getSingleById(id).subscribe(u => this.currentUser = u);
-    }
   }
 }
