@@ -15,6 +15,10 @@ export class UserService {
     return of(Users.find(user => id === user.id));
   }
 
+  getObjById(id: number): User {
+    return Users.find(user => id === user.id);
+  }
+
   getSingleByUsername(username: string): Observable<User> {
     return of(Users.find(user => username === user.username));
   }
@@ -32,7 +36,7 @@ export class UserService {
   }
 
   edit(user: User): boolean {
-    let oldUser = this.getSingleById(user.id).subscribe(u => oldUser = u);
+    const oldUser = this.getObjById(user.id);
     const index = Users.indexOf(oldUser);
     if (index === -1) {
       return false;
