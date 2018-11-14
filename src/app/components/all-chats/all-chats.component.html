@@ -1,9 +1,9 @@
 <div class="container ml-2">
   <div class="row mt-2" *ngFor="let conv of conversations">
     <div class="card" style="width: 100%" (click)="onSelect(conv)">
-      <strong class="card-title">{{ conv.member[1].username }}</strong>
-      <span class="card-text">{{ conv.messages[0].text }}</span>
-      <span class="card-text -align-right font-italic">{{ conv.messages[0].date | dateFormat: 'time'}}</span>
+      <strong class="card-title ml-2">{{ conv.member[1].username }}</strong>
+      <span class="card-text ml-2">{{ conv.messages[0].text }}</span>
+      <span class="card-text -align-right font-italic ml-2">{{ conv.messages[0].date | dateFormat: 'time'}}</span>
     </div>
   </div>
 </div>
