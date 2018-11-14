@@ -8,9 +8,9 @@ import {ChatComponent} from './pages/chat/chat.component';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent},
-  {path: ':id/register', component: RegisterComponent},
-  {path: ':id/user-view', component: UserViewComponent},
-  {path: ':id/chat', component: ChatComponent}
+  {path: 'register', component: RegisterComponent},
+  {path: 'user-view', component: UserViewComponent},
+  {path: 'chat', component: ChatComponent}
 ];
 
 @NgModule({

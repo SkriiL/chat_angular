@@ -32,6 +32,8 @@ export class LoginComponent implements OnInit {
     if (this.user) {
       if (this.password === this.user.password) {
         this.toastr.success('Login erfolgreich!');
+        sessionStorage.removeItem('id');
+        sessionStorage.setItem('id', this.user.id.toString());
         this.loggedIn.emit(this.user);
       } else {
         this.toastr.error('Falsches Passwort.', 'Login fehlgeschlagen!');

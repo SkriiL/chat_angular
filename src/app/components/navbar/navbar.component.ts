@@ -33,6 +33,6 @@ export class NavbarComponent implements OnInit {
   }
 
   signIn() {
-    this.router.navigate(['-1/register']);
+    this.router.navigate(['register']);
   }
 }

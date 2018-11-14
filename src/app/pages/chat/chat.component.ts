@@ -24,9 +24,9 @@ export class ChatComponent implements OnInit {
   }
 
   getUser() {
-    let id = -1;
-    this.route.params.subscribe(params => id = +params['id']);
-    if (id !== -1) {
+    let id;
+    id = parseInt(sessionStorage.getItem('id'), 10);
+    if (id) {
       this.userService.getSingleById(id).subscribe(u => this.currentUser = u);
     }
   }

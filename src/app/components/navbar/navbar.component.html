@@ -5,7 +5,7 @@
 </nav>
 
 <nav *ngIf="currentUser" class="navbar navbar-dark bg-dark">
-  <button class="col-md btn btn-dark" routerLink="{{ currentUser.id }}/chat">Chat</button>
-  <button class="col-md btn btn-dark" routerLink="{{ currentUser.id }}/user-view">Nutzer</button>
+  <button class="col-md btn btn-dark" routerLink="/chat">Chat</button>
+  <button class="col-md btn btn-dark" routerLink="/user-view">Nutzer</button>
   <button class="btn btn-outline-primary" (click)="logout()">Abmelden <i class="fa fa-sign-out"></i></button>
 </nav>
