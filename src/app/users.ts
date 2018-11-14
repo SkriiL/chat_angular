@@ -10,6 +10,6 @@ export const Conversations: Conversation[] = [
   {member: [Users[0], Users[1]],
     messages: [{by: Users[1], text: 'Hey', date: new Date()}]},
   {member: [Users[1], Users[0]],
-    messages: [{by: Users[0], text: 'na großer', date: new Date()},
+    messages: [{by: Users[0], text: 'na', date: new Date()},
                 {by: Users[1], text: 'alles fit bei dir?', date: new Date()}]},
 ];
