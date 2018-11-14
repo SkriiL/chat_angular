@@ -32,8 +32,4 @@ export class NavbarComponent implements OnInit {
     sessionStorage.removeItem('id');
     this.router.navigate(['']);
   }
-
-  signIn() {
-    this.router.navigate(['register']);
-  }
 }
