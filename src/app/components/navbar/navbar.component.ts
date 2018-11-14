@@ -29,6 +29,7 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.toastr.info('Abgemeldet!');
     this.currentUser = undefined;
+    sessionStorage.removeItem('id');
     this.router.navigate(['']);
   }
 

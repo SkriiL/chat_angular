@@ -9,7 +9,7 @@ export class DateFormatPipe implements PipeTransform {
     if (type === 'dateShort') {
       return date.getDay() + '.' + date.getMonth() + '.' + date.getFullYear();
     } else if (type === 'time') {
-      return date.getHours() + ':' + date.getMinutes();
+      return date.getHours() + ':' + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
     }
   }
 
