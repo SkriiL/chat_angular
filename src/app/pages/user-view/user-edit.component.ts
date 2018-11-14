@@ -36,6 +36,7 @@ export class UserEditComponent implements OnInit {
         username: this.username ? this.username : this.user.username,
         email: this.email ? this.email : this.user.email,
         password: this.user.password,
+        conversations: undefined
       };
       const success = this.userService.edit(user);
       if (success) {

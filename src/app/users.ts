@@ -2,8 +2,8 @@ import {User} from './models/user.model';
 import {Conversation} from './models/conversation.model';
 
 export const Users: User[] = [
-  { id: 1, username: 'SkriiL', email: 'flx.grimm@gmail.com', password: 'Seedraking1'},
-  { id: 2, username: 'Dummy', email: 'dummy@test.com', password: '123x'}
+  { id: 1, username: 'SkriiL', email: 'flx.grimm@gmail.com', password: 'Seedraking1', conversations: undefined},
+  { id: 2, username: 'Dummy', email: 'dummy@test.com', password: '123x', conversations: undefined}
 ];
 
 export const Conversations: Conversation[] = [
