@@ -1,1 +1,5 @@
 <app-message *ngFor="let message of conversation.messages" [otherUser]="conversation.member[1]" [message]="message"></app-message>
+<form>
+  <input class="form-control" [(ngModel)]="message" placeholder=". . ." title="Nachricht" name="Nachricht">
+  <button class="btn btn-outline-dark form-control" (click)="send()">Senden</button>
+</form>

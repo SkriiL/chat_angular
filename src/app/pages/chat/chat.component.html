@@ -3,7 +3,7 @@
     <app-all-chats (select)="select($event)"></app-all-chats>
   </div>
   <div class="col-9 mt-2">
-    <app-specific-chat *ngIf="selectedConversation" [conversation]="selectedConversation"></app-specific-chat>
+    <app-specific-chat *ngIf="selectedConversation" [currentUser]="currentUser" [conversation]="selectedConversation"></app-specific-chat>
     <span class="btn btn-outline-primary" *ngIf="!selectedConversation">Chat auswählen</span>
   </div>
 </div>

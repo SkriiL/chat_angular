@@ -17,16 +17,16 @@ export class MessageComponent implements OnInit {
   @Input() otherUser: User;
 
   public name: string;
-  public cardStyle = 'card mb-2 mr-2 text-right';
+  public cardStyle = 'card mb-2 mr-4 text-right';
 
   constructor() { }
 
   ngOnInit() {
     if (this.otherUser === this.message.by) {
-      this.cardStyle = 'card mb-2 mr-2 text-left';
+      this.cardStyle = 'card mb-2 mr-4 text-left';
       this.name = this.message.by.username;
     } else {
-      this.cardStyle = 'card mb-2 mr-2 text-right';
+      this.cardStyle = 'card mb-2 mr-4 text-right';
       this.name = 'Ich';
     }
   }

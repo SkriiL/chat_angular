@@ -9,7 +9,7 @@ import {Conversation} from '../../models/conversation.model';
   templateUrl: './chat.component.html',
 })
 export class ChatComponent implements OnInit {
-  private currentUser: User;
+  public currentUser: User;
   public selectedConversation: Conversation;
 
   constructor(private userService: UserService,
