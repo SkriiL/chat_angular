@@ -3,7 +3,7 @@
     <div class="card" style="width: 100%" (click)="onSelect(conv)">
       <strong class="card-title">{{ conv.member[1].username }}</strong>
       <span class="card-text">{{ conv.messages[0].text }}</span>
-      <span class="card-text -align-right font-italic">{{ conv.messages[0].date }}</span>
+      <span class="card-text -align-right font-italic">{{ conv.messages[0].date | dateFormat: 'time'}}</span>
     </div>
   </div>
 </div>

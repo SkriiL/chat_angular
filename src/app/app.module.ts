@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -18,6 +18,7 @@ import { AllChatsComponent } from './components/all-chats/all-chats.component';
 import { SpecificChatComponent } from './components/specific-chat/specific-chat.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ReallyModalComponent } from './modals/really-modal/really-modal.component';
+import { DateFormatPipe } from './pipes/date-format.pipe';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ReallyModalComponent } from './modals/really-modal/really-modal.compone
     AllChatsComponent,
     SpecificChatComponent,
     ReallyModalComponent,
+    DateFormatPipe,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,7 @@ import { ReallyModalComponent } from './modals/really-modal/really-modal.compone
     AppRoutingModule,
     NgbModule
   ],
-  providers: [],
+  providers: [ {provide: LOCALE_ID, useValue: 'de'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
