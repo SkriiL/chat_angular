@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Conversation} from '../../models/conversation.model';
 import {Message} from '../../models/message.model';
 import {User} from '../../models/user.model';
+import {SocketService} from '../../services/socket.service';
 
 @Component({
   selector: 'app-specific-chat',
@@ -12,19 +13,42 @@ export class SpecificChatComponent implements OnInit {
   @Input() currentUser: User;
 
   public message: string;
+  public messages: Message[];
 
-  constructor() { }
+  private ioConnection: any;
+
+  constructor(private socketService: SocketService) { }
 
   ngOnInit() {
+    this.initToConnection();
   }
 
   send() {
+    this.sendMessage(this.message);
     const messageObj: Message = {
       by: this.currentUser,
       text: this.message,
       date: new Date()
     };
     this.conversation.messages.push(messageObj);
-    this.message = '';
+    this.socketService.send(messageObj);
+    this.message = undefined;
+  }
+
+  initToConnection() {
+    this.socketService.initSocket();
+
+    this.ioConnection = this.socketService.onMessage()
+      .subscribe((message: Message) => {
+        this.messages.push(message);
+      });
+  }
+
+  sendMessage(message: string) {
+    this.socketService.send({
+      by: this.currentUser,
+      text: message,
+      date: new Date()
+    });
   }
 }

@@ -42,7 +42,7 @@ import { RegisterModalComponent } from './modals/register-modal/register-modal.c
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     AppRoutingModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [ {provide: LOCALE_ID, useValue: 'de'}],
   bootstrap: [AppComponent]
