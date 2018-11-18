@@ -3,6 +3,7 @@ import {User} from '../../models/user.model';
 import {UserService} from '../../services/user.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Conversation} from '../../models/conversation.model';
+import {ConversationService} from '../../services/conversation.service';
 
 @Component({
   selector: 'app-chat',
@@ -14,13 +15,15 @@ export class ChatComponent implements OnInit {
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private conversationService: ConversationService) { }
 
   ngOnInit() {
     this.getUser();
     if (!this.currentUser) {
       this.router.navigate(['']);
     }
+    // this.getSelectedById();
   }
 
   getUser() {
@@ -34,4 +37,12 @@ export class ChatComponent implements OnInit {
   select(conversation: Conversation) {
     this.selectedConversation = conversation;
   }
+
+  /*getSelectedById() {
+    let user = this.userService.getSingleById(parseInt(this.route.snapshot.paramMap.get('id'), 10)).subscribe(u => user = u);
+    const obs = this.conversationService.getSingleByUsers(this.currentUser, user);
+    if (obs) {
+      obs.subscribe(c => this.selectedConversation = c);
+    }
+  }*/
 }

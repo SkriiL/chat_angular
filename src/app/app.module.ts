@@ -19,6 +19,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ReallyModalComponent } from './modals/really-modal/really-modal.component';
 import { DateFormatPipe } from './pipes/date-format.pipe';
 import { RegisterModalComponent } from './modals/register-modal/register-modal.component';
+import { FriendsComponent } from './pages/friends/friends.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { RegisterModalComponent } from './modals/register-modal/register-modal.c
     ReallyModalComponent,
     DateFormatPipe,
     RegisterModalComponent,
+    FriendsComponent,
   ],
   imports: [
     BrowserModule,

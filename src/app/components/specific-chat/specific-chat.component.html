@@ -7,8 +7,8 @@
       <input class="form-control" [(ngModel)]="message" placeholder=". . ." title="Nachricht" name="Nachricht">
     </div>
     <div class="col-3">
-      <button class="btn btn-outline-dark form-control" (click)="send()">Senden</button>
+      <button class="btn btn-outline-dark form-control" [disabled]="!message" (click)="send()">Senden</button>
     </div>
   </div>
 </form>
-<span *ngFor="let message of messages">{{ message.text }}</span>
+<!--<span *ngFor="let message of messages">{{ message.text }}</span>-->

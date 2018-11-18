@@ -13,7 +13,6 @@ export class SpecificChatComponent implements OnInit {
   @Input() currentUser: User;
 
   public message: string;
-  public messages: Message[];
 
   private ioConnection: any;
 
@@ -24,7 +23,6 @@ export class SpecificChatComponent implements OnInit {
   }
 
   send() {
-    this.sendMessage(this.message);
     const messageObj: Message = {
       by: this.currentUser,
       text: this.message,
@@ -40,15 +38,7 @@ export class SpecificChatComponent implements OnInit {
 
     this.ioConnection = this.socketService.onMessage()
       .subscribe((message: Message) => {
-        this.messages.push(message);
+        this.conversation.messages.push(message);
       });
-  }
-
-  sendMessage(message: string) {
-    this.socketService.send({
-      by: this.currentUser,
-      text: message,
-      date: new Date()
-    });
   }
 }

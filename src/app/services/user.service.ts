@@ -32,6 +32,7 @@ export class UserService {
       email: email,
       password: password,
       conversations: undefined,
+      friendlist: undefined,
     };
     Users.push(user);
   }

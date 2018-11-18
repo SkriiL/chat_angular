@@ -28,6 +28,7 @@
     "ng6-toastr": "^6.0.0",
     "ngx-toastr": "^9.1.1",
     "rxjs": "^6.0.0",
+    "rxjs-compat": "^6.3.3",
     "socket.io-client": "^2.1.1",
     "zone.js": "~0.8.26"
   },
