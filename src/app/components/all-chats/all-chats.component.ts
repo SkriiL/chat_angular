@@ -1,6 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Conversations} from '../../users';
 import {Conversation} from '../../models/conversation.model';
+import {User} from '../../models/user.model';
 
 @Component({
   selector: 'app-all-chats',
@@ -8,7 +9,9 @@ import {Conversation} from '../../models/conversation.model';
 })
 export class AllChatsComponent implements OnInit {
   @Output() select = new EventEmitter<Conversation>();
-  public conversations = Conversations;
+
+  @Input() currentUser: User;
+
   public selectedConversation: Conversation;
 
   constructor() { }
