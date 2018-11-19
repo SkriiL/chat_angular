@@ -10,7 +10,7 @@ import {ConversationService} from '../../services/conversation.service';
   templateUrl: './chat.component.html',
 })
 export class ChatComponent implements OnInit {
-  public currentUser: User;
+  public currentUser: User = new User();
   public selectedConversation: Conversation;
 
   constructor(private userService: UserService,

@@ -11,7 +11,7 @@ export class UserViewComponent implements OnInit {
   public users: User[];
   public selectedUser: User;
 
-  private currentUser: User;
+  private currentUser: User = new User();
 
   constructor(
     private userService: UserService,

@@ -8,9 +8,9 @@ export const Users: User[] = [
 ];
 
 export const Conversations: Conversation[] = [
-  {member: [Users[0], Users[1]],
+  {id: 1, member: [Users[0], Users[1]],
     messages: [{by: Users[1], text: 'Hey', date: new Date()}]},
-  {member: [Users[1], Users[0]],
+  {id: 2, member: [Users[1], Users[0]],
     messages: [{by: Users[0], text: 'na', date: new Date()}]},
 ];
 

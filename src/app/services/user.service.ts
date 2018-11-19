@@ -3,6 +3,8 @@ import { User } from '../models/user.model';
 import { Users } from '../users';
 import {Observable, of} from 'rxjs';
 import {SocketService} from './socket.service';
+import {Conversation} from '../models/conversation.model';
+import {ConversationService} from './conversation.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,16 @@ export class UserService {
   }
 
   getSingleById(id: number): Observable<User> {
-    return of(Users.find(user => id === user.id));
+    this.socketService.sendRequest('getUserById', id.toString());
+    return new Observable<User>(observer => {
+      this.socketService.returnUser.subscribe(x => {
+        const _id = parseInt(x[0], 10);
+        let convs: Conversation[];
+        this.conversationService.getAllForUser(_id).subscribe(c => convs = c);
+        const user = {id: id, username: x[1], email: x[2], password: x[3], conversations: convs, friendlist: undefined};
+        return observer.next(user);
+      });
+    });
   }
 
   getObjById(id: number): User {
@@ -23,7 +34,8 @@ export class UserService {
   getSingleByUsername(username: string): Observable<User> {
     return of(Users.find(user => username === user.username));
   }
-  constructor() { }
+  constructor(private socketService: SocketService,
+              private conversationService: ConversationService) { }
 
   add(username: string, email: string, password: string) {
     const id = Users.length + 1;

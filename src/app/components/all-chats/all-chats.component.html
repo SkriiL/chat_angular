@@ -1,5 +1,5 @@
 <div class="container ml-2">
-  <div class="row mt-2" *ngFor="let conv of currentUser.conversations">
+  <div class="row mt-2" *ngFor="let conv of this.conversations">
     <div class="card" style="width: 100%" (click)="onSelect(conv)">
       <strong class="card-title ml-2">{{ conv.member[1].username }}</strong>
       <span class="card-text ml-2">{{ conv.messages[0].text }}</span>

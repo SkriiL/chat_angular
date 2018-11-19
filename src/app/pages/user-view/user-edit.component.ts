@@ -32,6 +32,7 @@ export class UserEditComponent implements OnInit {
   }
 
   edit(event: boolean) {
+    this.userService.getSingleById(1);
     if (event) {
       const user: User = {
         id: this.user.id,

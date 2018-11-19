@@ -9,7 +9,7 @@ import {SocketService} from '../../services/socket.service';
   templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent implements OnInit {
-  private currentUser: User;
+  private currentUser: User = new User();
 
   constructor(private route: ActivatedRoute,
               private userService: UserService,
