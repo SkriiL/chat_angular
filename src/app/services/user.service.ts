@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 import { Users } from '../users';
 import {Observable, of} from 'rxjs';
+import {SocketService} from './socket.service';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,7 @@ export class UserService {
       email: email,
       password: password,
       conversations: undefined,
-      friendlist: undefined,
+      friendlist: undefined
     };
     Users.push(user);
   }

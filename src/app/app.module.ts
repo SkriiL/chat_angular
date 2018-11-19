@@ -20,6 +20,8 @@ import { ReallyModalComponent } from './modals/really-modal/really-modal.compone
 import { DateFormatPipe } from './pipes/date-format.pipe';
 import { RegisterModalComponent } from './modals/register-modal/register-modal.component';
 import { FriendsComponent } from './pages/friends/friends.component';
+import {SocketService} from './services/socket.service';
+import {UserService} from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,7 @@ import { FriendsComponent } from './pages/friends/friends.component';
     AppRoutingModule,
     NgbModule,
   ],
-  providers: [ {provide: LOCALE_ID, useValue: 'de'}],
+  providers: [ {provide: LOCALE_ID, useValue: 'de'}, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

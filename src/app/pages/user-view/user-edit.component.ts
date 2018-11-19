@@ -3,6 +3,7 @@ import {User} from '../../models/user.model';
 import {UserService} from '../../services/user.service';
 import {ToastrService} from 'ngx-toastr';
 import {ActivatedRoute, Router} from '@angular/router';
+import {SocketService} from '../../services/socket.service';
 
 @Component({
   selector: 'app-user-edit',
@@ -19,6 +20,7 @@ export class UserEditComponent implements OnInit {
   private currentUser: User;
 
   constructor(
+    private socketService: SocketService,
     private userService: UserService,
     private toastr: ToastrService,
     private route: ActivatedRoute,

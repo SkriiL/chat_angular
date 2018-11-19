@@ -34,8 +34,6 @@ export class SpecificChatComponent implements OnInit {
   }
 
   initToConnection() {
-    this.socketService.initSocket();
-
     this.ioConnection = this.socketService.onMessage()
       .subscribe((message: Message) => {
         this.conversation.messages.push(message);
