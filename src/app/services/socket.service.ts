@@ -39,9 +39,15 @@ export class SocketService {
     this.socket.emit(event, args, this.callback);
   }
 
+  public onEvent(event: string): Observable<any> {
+    return new Observable<any>(observer => {
+      this.socket.on(event, data => observer.next(data));
+    });
+  }
+
   callback(args) {
     this.returnUser = of(args);
   }
 
-  constructor() {}
+  constructor() {this.initSocket()}
 }

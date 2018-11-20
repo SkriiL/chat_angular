@@ -5,22 +5,35 @@ import {Observable, of} from 'rxjs';
 import {SocketService} from './socket.service';
 import {Conversation} from '../models/conversation.model';
 import {ConversationService} from './conversation.service';
+import {Message} from '../models/message.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   getAll(): Observable<User[]> {
-    return of(Users);
+    this.socketService.sendRequest('getAllUsers', '');
+    return new Observable<User[]>(observer => {
+      this.socketService.onEvent('allUsers').subscribe(((x: string[][]) => {
+        let users: User[] = [];
+        for (let i = 0; i < x.length; i++) {
+          const id = parseInt(x[i][0], 10);
+          let convs: Conversation[];
+          this.conversationService.getAllForUser(id).subscribe(c => convs = c);
+          const user = {id: id, username: x[i][1], email: x[i][2], password: x[i][3], conversations: convs, friendlist: undefined};
+          users.push(user);
+        }
+        return observer.next(users);
+      }));
+    });
   }
 
   getSingleById(id: number): Observable<User> {
     this.socketService.sendRequest('getUserById', id.toString());
     return new Observable<User>(observer => {
-      this.socketService.returnUser.subscribe(x => {
-        const _id = parseInt(x[0], 10);
+      this.socketService.onEvent('user').subscribe((x: string[]) => {
         let convs: Conversation[];
-        this.conversationService.getAllForUser(_id).subscribe(c => convs = c);
+        this.conversationService.getAllForUser(id).subscribe(c => convs = c);
         const user = {id: id, username: x[1], email: x[2], password: x[3], conversations: convs, friendlist: undefined};
         return observer.next(user);
       });
@@ -32,43 +45,32 @@ export class UserService {
   }
 
   getSingleByUsername(username: string): Observable<User> {
-    return of(Users.find(user => username === user.username));
+    this.socketService.sendRequest('getUserByName', username);
+    return new Observable<User>(observer => {
+      this.socketService.onEvent('user').subscribe((x: string[]) => {
+        const id = parseInt(x[0], 10);
+        let convs: Conversation[];
+        this.conversationService.getAllForUser(id).subscribe(c => convs = c);
+        const user = {id: id, username: x[1], email: x[2], password: x[3], conversations: convs, friendlist: undefined};
+        console.log(user);
+        return observer.next(user);
+      });
+    });
   }
   constructor(private socketService: SocketService,
-              private conversationService: ConversationService) { }
+              private conversationService: ConversationService) {}
 
   add(username: string, email: string, password: string) {
-    const id = Users.length + 1;
-    const user: User = {
-      id: id,
-      username: username,
-      email: email,
-      password: password,
-      conversations: undefined,
-      friendlist: undefined
-    };
-    Users.push(user);
+    const user: string = username + '|' + email + '|' + password;
+    this.socketService.sendRequest('addUser', user);
   }
 
-  edit(user: User): boolean {
-    const oldUser = this.getObjById(user.id);
-    const index = Users.indexOf(oldUser);
-    if (index === -1) {
-      return false;
-    } else {
-      Users.splice(index, 1, user);
-      return true;
-    }
+  edit(user: User) {
+    const user_str: string = user.id + '|' + user.username + '|' + user.email + '|' + user.password + '|' + user.conversations + '|' + user.friendlist;
+    this.socketService.sendRequest('editUser', user_str);
   }
 
   deleteById(id: number) {
-    let user = this.getSingleById(id).subscribe(u => user = u);
-    const index = Users.indexOf(user);
-    if (index === -1) {
-      return false;
-    } else {
-      Users.splice(index, 1);
-      return true;
-    }
+    this.socketService.sendRequest('deleteUser', id.toString());
   }
 }

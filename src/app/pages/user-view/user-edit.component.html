@@ -1,7 +1,7 @@
 <form class="container">
   <div class="form-group">
     <label for="id">ID</label>
-    <input class="form-control" [value]="user.id" type="text" id="id" disabled>
+    <input class="form-control" [value]="_user.id" type="text" id="id" disabled>
   </div>
   <div class="form-group">
     <label for="username">Nutzername</label>
@@ -15,7 +15,7 @@
     <button class="btn btn-outline-danger mr-2" (click)="abort()">Abbrechen</button>
     <button class="btn btn-outline-dark mr-2" (click)="reset()" [disabled]="!changes">Zurücksetzen</button>
     <app-really-modal buttonText="Speichern" [disabled]="!changes" buttonClass="btn btn-outline-primary"
-                      (clicked)="edit($event)" [text]="'Den Nutzer ' + user.username + ' wirklich bearbeiten?'" title="Nutzer bearbeiten">
+                      (clicked)="edit($event)" [text]="'Den Nutzer ' + _user.username + ' wirklich bearbeiten?'" title="Nutzer bearbeiten">
     </app-really-modal>
   </div>
 </form>

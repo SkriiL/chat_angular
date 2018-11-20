@@ -10,12 +10,18 @@ import {SocketService} from '../../services/socket.service';
   templateUrl: './user-edit.component.html'
 })
 export class UserEditComponent implements OnInit {
-  @Input() user: User;
+  @Input('user')
+  set user(value: User) {
+    this._user = value;
+    this.username = value.username;
+    this.email = value.email;
+  }
   @Output() collapsed = new EventEmitter<boolean>();
 
   public username: string;
   public email: string;
   public changes = false;
+  public _user: User;
 
   private currentUser: User;
 
@@ -27,27 +33,27 @@ export class UserEditComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.username = this.user.username;
-    this.email = this.user.email;
+    // this.username = this.user.username;
+    // this.email = this.user.email;
   }
 
   edit(event: boolean) {
     this.userService.getSingleById(1);
     if (event) {
       const user: User = {
-        id: this.user.id,
-        username: this.username ? this.username : this.user.username,
-        email: this.email ? this.email : this.user.email,
-        password: this.user.password,
-        conversations: this.user.conversations ? this.user.conversations : undefined,
-        friendlist: this.user.friendlist ? this.user.friendlist : undefined,
+        id: this._user.id,
+        username: this.username ? this.username : this._user.username,
+        email: this.email ? this.email : this._user.email,
+        password: this._user.password,
+        conversations: this._user.conversations ? this._user.conversations : undefined,
+        friendlist: this._user.friendlist ? this._user.friendlist : undefined,
       };
-      const success = this.userService.edit(user);
-      if (success) {
+      this.userService.edit(user);
+      /*if (success) {
         this.toastr.success('Der Nutzer ' + user.username + ' wurde erfolgreich bearbeitet!');
       } else {
         this.toastr.error('Der Nutzer konnte nicht gefunden werden!');
-      }
+      }*/
       // window.location.reload();
       this.collapsed.emit(true);
     }
