@@ -49,11 +49,7 @@ export class UserEditComponent implements OnInit {
         friendlist: this._user.friendlist ? this._user.friendlist : undefined,
       };
       this.userService.edit(user);
-      /*if (success) {
-        this.toastr.success('Der Nutzer ' + user.username + ' wurde erfolgreich bearbeitet!');
-      } else {
-        this.toastr.error('Der Nutzer konnte nicht gefunden werden!');
-      }*/
+      this.toastr.success('Der Nutzer ' + user.username + ' wurde erfolgreich bearbeitet!');
       // window.location.reload();
       this.collapsed.emit(true);
     }

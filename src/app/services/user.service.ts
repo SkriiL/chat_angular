@@ -12,7 +12,7 @@ import {Message} from '../models/message.model';
 })
 export class UserService {
   getAll(): Observable<User[]> {
-    this.socketService.sendRequest('getAllUsers', '');
+    this.socketService.sendRequest('getAllUsers', '', false);
     return new Observable<User[]>(observer => {
       this.socketService.onEvent('allUsers').subscribe(((x: string[][]) => {
         let users: User[] = [];
@@ -29,7 +29,7 @@ export class UserService {
   }
 
   getSingleById(id: number): Observable<User> {
-    this.socketService.sendRequest('getUserById', id.toString());
+    this.socketService.sendRequest('getUserById', id.toString(), false);
     return new Observable<User>(observer => {
       this.socketService.onEvent('user').subscribe((x: string[]) => {
         let convs: Conversation[];
@@ -45,7 +45,7 @@ export class UserService {
   }
 
   getSingleByUsername(username: string): Observable<User> {
-    this.socketService.sendRequest('getUserByName', username);
+    this.socketService.sendRequest('getUserByName', username, false);
     return new Observable<User>(observer => {
       this.socketService.onEvent('user').subscribe((x: string[]) => {
         const id = parseInt(x[0], 10);
@@ -62,15 +62,19 @@ export class UserService {
 
   add(username: string, email: string, password: string) {
     const user: string = username + '|' + email + '|' + password;
-    this.socketService.sendRequest('addUser', user);
+    this.socketService.sendRequest('addUser', user, false);
   }
 
   edit(user: User) {
     const user_str: string = user.id + '|' + user.username + '|' + user.email + '|' + user.password + '|' + user.conversations + '|' + user.friendlist;
-    this.socketService.sendRequest('editUser', user_str);
+    // const msg = 'Nutzer ' + user.username + ' wurde bearbeitet.';
+    this.socketService.sendRequest('editUser', user_str, false);
+    // this.socketService.sendRequest('editUser', user_str, true, msg, 'Nutzer konnte nicht bearbeitet werden.');
   }
 
   deleteById(id: number) {
-    this.socketService.sendRequest('deleteUser', id.toString());
+    // const msg = 'Nutzer mit der ID ' + id + ' konnte nicht gelöscht werden.';
+    this.socketService.sendRequest('deleteUser', id.toString(), false);
+    // this.socketService.sendRequest('deleteUser', id.toString(), true, msg, 'Nutzer konnte nicht gelöscht werden.');
   }
 }
